@@ -12,3 +12,21 @@
 .createByjs{
     color: blue;
 }
+
+
+/* user cards */
+.display-cards{
+    display: flex;
+    justify-content: space-between;
+}
+.user-card{
+    padding: 10px 20px;
+}
+.user-card h3{
+    font-weight: bolder;
+    font-size: 22px;
+}
+.user-card p{
+    font-size: 18px;
+    color: green;
+}

@@ -9,12 +9,29 @@ const users = [
 ]
 
 function displayUsers() {
+
+    userDiv.classList.add("display-cards")
+
     users.map(function(value, index) {
+
+        // create h3 tag for name
+        let h3 = document.createElement('h3')
+        h3.textContent = value.name
+
+        // create p tag for age
         let p_tag = document.createElement('p')
-        p_tag.textContent = index + 1 + ". Name : " + value.name
+        p_tag.textContent = "Age : " + value.age
         p_tag.id = index
 
-        userDiv.append(p_tag)
+        // create a div to wrap h3 and p tag
+        let wrapperDiv = document.createElement('div')
+        wrapperDiv.classList.add('user-card')
+
+        wrapperDiv.append(h3)
+        wrapperDiv.append(p_tag)
+
+        // finally insert the wrapper into the user div
+        userDiv.append(wrapperDiv)
     })
 }
 
