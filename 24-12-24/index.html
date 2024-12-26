@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Basic popup</title>
+</head>
+<body>
+
+    <div class="container">
+        <button onclick="popup()" id="btn" class="btn">Click me to open a popup</button>
+    </div>
+
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <h2>This is a popup</h2>
+        </div>
+    </div>
+
+
+    <!-- javascript -->
+    <script>
+        function popup() {
+            const popup = document.getElementById("popup")
+            popup.classList.add("open")
+
+            setTimeout(function(){
+                popup.classList.remove("open")
+            }, 3000)
+        }
+    </script>
+    
+</body>
+</html>
