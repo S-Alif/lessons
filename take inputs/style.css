@@ -21,6 +21,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 
 .form-wrapper{
@@ -80,4 +81,17 @@ body{
 .submit-btn:hover{
     background: #009933;
     transition: all 0.3s;
+}
+
+/* display data */
+.display-data{
+    width: 100%;
+    margin-top: 20px;
+}
+.display-data h2{
+    font-family: sans-serif;
+}
+.display-data p{
+    font-family: sans-serif;
+    font-size: 17px;
 }
