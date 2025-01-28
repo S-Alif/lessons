@@ -5,8 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="script.js" defer></script>
     <title>Document</title>
+
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        .display-div{
+            width: 100%;
+            height: auto;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        .user-card{
+            width: 25%;
+            padding: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+
 </head>
 <body>
-    <div id="display-users"></div>
+    <div class="display-div" id="display-users"></div>
+    <button onclick="fetchData()">Fetch Data</button>
 </body>
 </html>
