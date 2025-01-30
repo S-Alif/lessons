@@ -1,4 +1,7 @@
 const displayDiv = document.getElementById('display-users')
+const userTable = document.getElementById('user-table')
+const userList = document.getElementById('user-list')
+const displayUserList = document.getElementById('display-user-list')
 
 
 window.addEventListener('load', async () => {
@@ -21,18 +24,30 @@ window.addEventListener('load', async () => {
 
 const displayData = async (data) => {
     // let data = await fetchData()
+
+    displayUserList.innerHTML = ""
     
     data?.users.map((value, index) => {
+
+        const {id, firstName, lastName, age, email, address, gender, phone} = value
+
         let htmlMarkup = `
-            <div class="user-card" id="${index}">
-                <img src="${value.image}" />
-                <h3>${index + 1}. ${value.firstName} ${value.lastName}</h3>
-                <p>Age: ${value.age}</p>
-                <a href="http://127.0.0.1:5500/async-await/user.html?id=${value?.id}" target="_blank">See more</a>
-            </div>
+            <tr class="user-info">
+                <td>${index+1}</td>
+                <td>
+                    <a href="http://127.0.0.1:5500/async-await/user.html?id=${id}" target="_blank">${firstName} ${lastName}</a>
+                </td>
+                <td>${age}</td>
+                <td><a href="mailto:${email}">${email}</a></td>
+                <td>${address?.address}, ${address?.city}, ${address?.state} ${address?.country}</td>
+                <td>${gender}</td>
+                <td>
+                    <a href="tel:${phone}">${phone}</a>
+                </td>
+            </tr>
         `
 
-        displayDiv.insertAdjacentHTML("beforeend", htmlMarkup)
+        displayUserList.insertAdjacentHTML("beforeend", htmlMarkup)
     })
 }
 
@@ -56,8 +71,10 @@ const fetchData = async () => {
             headers: { 'Content-Type': 'application/json' }
         })
         let data = await result.json()
+        userList.style.display = "block"
         displayData(data)
     } catch (error) {
+        console.log(error)
         alert(error.messaage)
     }
 }

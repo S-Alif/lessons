@@ -3,30 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
     <title>Document</title>
 
-    <style>
-        *{
-            box-sizing: border-box;
-        }
-        .display-div{
-            width: 100%;
-            height: auto;
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-        }
-        .user-card{
-            width: 25%;
-            padding: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-        }
-    </style>
-
 </head>
 <body>
-    <div class="display-div" id="display-users"></div>
+    <div class="display-div">
+        <div class="user-list" id="user-list">
+            <h2>List of all users</h2>
+
+            <table class="user-table">
+                <thead>
+                    <tr class="table-header">
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Email</th>
+                        <th>Address</th>
+                        <th>Gender</th>
+                        <th>Phone</th>
+                    </tr>
+                </thead>
+                <tbody id="display-user-list">
+
+                </tbody>
+            </table>
+        </div>
+    </div>
     <button onclick="fetchData()">Fetch Data</button>
 </body>
 </html>
