@@ -2,26 +2,13 @@ const displayDiv = document.getElementById('display-users')
 const userTable = document.getElementById('user-table')
 const userList = document.getElementById('user-list')
 const displayUserList = document.getElementById('display-user-list')
+const paginationBox = document.getElementById('pagination-box')
 
 
-window.addEventListener('load', async () => {
-    let urlParams = new URLSearchParams(window.location.search)
-    if(urlParams){
-        let id = urlParams.get('id')
-        
-        if(!id) return
-        try {
-            let result = await fetch("https://dummyjson.com/users/"+id)
-            let data = await result.json()
-            displayDiv.innerHTML = JSON.stringify(data)
-        } catch (error) {
-            alert(error.messaage)
-        }
+let page = 1
+let totalUsers = 0
 
-    }
-})
-
-
+// display data
 const displayData = async (data) => {
     // let data = await fetchData()
 
@@ -49,6 +36,10 @@ const displayData = async (data) => {
 
         displayUserList.insertAdjacentHTML("beforeend", htmlMarkup)
     })
+
+    // pagination
+    let totalPages = Math.ceil(totalUsers / 30)
+    let paginationHtml = ""
 }
 
 // fetching data
@@ -64,6 +55,26 @@ const displayData = async (data) => {
 //     })
 // }
 
+// pagination
+const pagination = async (pageNum) => {
+    let limit = 30
+    let skip = (pageNum - 1) * limit
+
+    try {
+        let result = await fetch(`https://dummyjson.com/user?limit=${limit}&skip=${skip}`, {
+            method: "GET",
+            headers: { 'Content-Type': 'application/json' }
+        })
+        let data = await result.json()
+        displayData(data)
+    } catch (error) {
+        console.log(error)
+        alert(error.messaage)
+    }
+}
+
+
+// fetch data functions
 const fetchData = async () => {
     try {
         let result = await fetch("https://dummyjson.com/user", {
@@ -71,10 +82,17 @@ const fetchData = async () => {
             headers: { 'Content-Type': 'application/json' }
         })
         let data = await result.json()
+
         userList.style.display = "block"
+        totalUsers = data?.total
+
         displayData(data)
     } catch (error) {
         console.log(error)
         alert(error.messaage)
     }
 }
+
+
+// call the fetchData when window loads
+window.onload = () => fetchData()
